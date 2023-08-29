@@ -20,8 +20,9 @@ def index(request):
 def entry(request, title):
     content_html = convert_md_to_html(title)
     if content_html is None:
+        error_message = f"this title ({title}) does not exist!"
         return render(request, "encyclopedia/error.html", {
-            "title": title
+            "error": error_message
         })
     else:
         return render(request, "encyclopedia/entry.html", {
@@ -48,4 +49,21 @@ def search(request):
             "entry": content_html,
             "title": title
         })
+            
+def set_NewPage(request):
+    return render(request, "encyclopedia/new_page.html")
+
+def create_NewPage(request):
+    if request.method == "POST":
+        title = request.POST['title']
+        content_md = request.POST['content_md']
+        
+        if title in util.list_entries():
+            error_message = f"Please input valid title (this {title} is already exist!)"
+            return render(request, "encyclopedia/error.html", {
+                "error": error_message
+            })
+        else:
+            util.save_entry(title=title, content=content_md)
+            entry(request, title=title)
                     
