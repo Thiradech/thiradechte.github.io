@@ -55,8 +55,8 @@ def set_NewPage(request):
 
 def create_NewPage(request):
     if request.method == "POST":
-        title = request.POST['title']
-        content_md = request.POST['content_md']
+        title = request.POST.get('title')
+        content = request.POST.get('content_md')
         
         if title in util.list_entries():
             error_message = f"Please input valid title (this {title} is already exist!)"
@@ -64,6 +64,10 @@ def create_NewPage(request):
                 "error": error_message
             })
         else:
-            util.save_entry(title=title, content=content_md)
-            entry(request, title=title)
+            util.save_entry(title=title, content=content)
+            return render(request, "encyclopedia/entry.html", {
+            "entry": content,
+            "title": title
+            })
+    
                     

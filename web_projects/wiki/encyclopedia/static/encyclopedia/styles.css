@@ -36,3 +36,12 @@ textarea {
 .sidebar h2 {
     margin-top: 5px;
 }
+
+#text_area {
+    margin: 10px;
+    margin-left: 0px;
+    height: 250px;
+    width: 50%;  
+}
+
+
