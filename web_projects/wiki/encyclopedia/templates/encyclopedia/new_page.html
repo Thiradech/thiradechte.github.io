@@ -7,9 +7,13 @@
 {% block body%}
     <form action="{% url 'create_newPage' %}" method="POST">
         {% csrf_token %}
-        <input type="text", placeholder="title", name="title"><br>
-        <textarea name="content_md" placeholder="content area" rows="30" cols="50">
-        </textarea><br>       
-        <input type="submit" value="save">
+        <h1>Create New Page</h1>
+        <label>Title:</label>
+        <input type="text", placeholder="title", name="title">
+        <br/>
+        <label>Markdown Content:</label><br/>
+        <textarea name="content_md" placeholder="Markdown Content"></textarea>
+        <br/>       
+        <input type="submit" value="Save New Page">
     </form>
 {% endblock %}
