@@ -1,0 +1,15 @@
+{% extends 'encyclopedia/layout.html' %}
+{% include 'encyclopedia/entry.html' %}
+
+{% block title %}
+   Edit {{ entry }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ entry }}</h1>
+    <form action="{% url 'edit_page' %}" method="POST">
+        <input type="text" name="title" placeholder={{ entry }}>
+        <input type="textarea" name="content_md" placeholder={{ content }}>
+        <input type="submit">
+    </form>
+{% endblock %}
