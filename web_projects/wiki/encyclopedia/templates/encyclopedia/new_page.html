@@ -8,7 +8,8 @@
     <form action="{% url 'create_newPage' %}" method="POST">
         {% csrf_token %}
         <input type="text", placeholder="title", name="title"><br>
-        <input type="textarea" name="content_md" placeholder="content area"><br>
+        <textarea name="content_md" placeholder="content area" rows="30" cols="50">
+        </textarea><br>       
         <input type="submit" value="save">
     </form>
 {% endblock %}
